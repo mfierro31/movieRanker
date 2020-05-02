@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Ranker</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <h1>Movie Ranker</h1>
+  <form action="">
+    <input type="text" name="movie" id="movie" placeholder="Movie Title">
+    <!-- only allow movie rating to be numbers 0 - 10 -->
+    <input type="number" name="rating" id="rating" placeholder="Ranking" min="0" max="10">
+    <input type="submit" value="Submit">
+  </form>
+  <div class="btn-container">
+    <button id="a-z">Sort A-Z</button>
+    <button id="z-a">Sort Z-A</button>
+    <button id="zero-10">Sort by Rating low to high</button>
+    <button id="ten-0">Sort by Rating high to low</button>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
