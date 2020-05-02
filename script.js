@@ -22,6 +22,11 @@ $('form').on('submit', function (evt) {
   $('input').eq(1).val('');
 });
 
+//delete button event listener.  We have to put it on the grandparent element, #list-container, because
+//both .delete-btn and its parent li are not created when the script runs.  We need to put it on something
+//that already exists on the page when the script runs.  
+
+//Before we delete the list item, we delete the matching movie from our arr and numArr as well
 $('#list-container').on('click', '.delete-btn', function () {
   arr = arr.filter(movie => $(this).parent().text() !== movie + " Delete");
   numArr = numArr.filter(movie => $(this).parent().text() !== movie[1] + " Delete")
