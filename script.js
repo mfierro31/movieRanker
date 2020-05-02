@@ -1,5 +1,5 @@
-const arr = [];
-const numArr = [];
+let arr = [];
+let numArr = [];
 
 $('form').on('submit', function (evt) {
   //if we don't do this, our list items will immediately disappear because page will refresh
@@ -11,7 +11,7 @@ $('form').on('submit', function (evt) {
     $('input').eq(1).val('');
     return;
   }
-  $('body').append(`<li>${$('#movie').val()} - ${$('#rating').val()} out of 10</li>`);
+  $('#list-container').append(`<li>${$('#movie').val()} - ${$('#rating').val()} out of 10 <button class="delete-btn">Delete</button></li>`);
   //adding to alphabetical array
   arr.push(`${$('#movie').val()} - ${$('#rating').val()} out of 10`);
   //adding to numerical array - we need to have the number rating as a separate value by itself, but still
@@ -22,12 +22,18 @@ $('form').on('submit', function (evt) {
   $('input').eq(1).val('');
 });
 
+$('#list-container').on('click', '.delete-btn', function () {
+  arr = arr.filter(movie => $(this).parent().text() !== movie + " Delete");
+  numArr = numArr.filter(movie => $(this).parent().text() !== movie[1] + " Delete")
+  $(this).parent().remove();
+})
+
 //sorting alphabetically in ascending order
 $('#a-z').on('click', function () {
   if ($('li').length >= 2) {
     $('li').remove();
     arr.sort();
-    arr.forEach(movie => $('<li>').text(movie).appendTo('body'));
+    arr.forEach(movie => $('<li>').html(`${movie} <button class="delete-btn">Delete</button>`).appendTo('#list-container'));
   } else {
     return;
   }
@@ -39,7 +45,7 @@ $('#z-a').on('click', function () {
     $('li').remove();
     arr.sort();
     arr.reverse();
-    arr.forEach(movie => $('<li>').text(movie).appendTo('body'));
+    arr.forEach(movie => $('<li>').html(`${movie} <button class="delete-btn">Delete</button>`).appendTo('#list-container'));
   } else {
     return;
   }
@@ -50,7 +56,7 @@ $('#zero-10').on('click', function () {
   if ($('li').length >= 2) {
     $('li').remove();
     numArr.sort(function (a, b) { return a[0] - b[0] });
-    numArr.forEach(movie => $('<li>').text(movie[1]).appendTo('body'));
+    numArr.forEach(movie => $('<li>').html(`${movie[1]} <button class="delete-btn">Delete</button>`).appendTo('#list-container'));
   } else {
     return;
   }
@@ -61,7 +67,7 @@ $('#ten-0').on('click', function () {
   if ($('li').length >= 2) {
     $('li').remove();
     numArr.sort(function (a, b) { return b[0] - a[0] });
-    numArr.forEach(movie => $('<li>').text(movie[1]).appendTo('body'));
+    numArr.forEach(movie => $('<li>').html(`${movie[1]} <button class="delete-btn">Delete</button>`).appendTo('#list-container'));
   } else {
     return;
   }

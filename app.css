@@ -18,3 +18,7 @@ button {
 #rating {
   width: 150px;
 }
+
+#list-container li {
+  text-align: center;
+}
